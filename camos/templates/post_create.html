@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+{% load widget_tweaks %}
+
+<h2 class="title">求人作成画面</h2>
+
+<div class="has-text-centered">
+    <form action="." method="post">
+        {% csrf_token %}
+        <div class="title">
+            <p class="is-size-4" style="margin-bottom: 20px;">求人タイトル</p>
+            {{ form.title | add_class:"input is-primary"}}
+        </div>
+        <div hidden>
+            <input type="text" name="slug" maxlength="50" class="input is-primary" required="" id="id_slug" value={{next_cnt}}>
+        </div>
+        <div class="title">
+            <p class="is-size-4" style="margin-bottom: 20px;">業務内容</p>
+            {{ form.job | add_class:"input is-primary"}}
+        </div>
+        <div class="title" style="padding: 0px 500px;">
+            <p class="is-size-4" style="margin-bottom: 20px;">要求資格</p>
+            {{form.qualification | add_class:"is-size-4 has-text-left"}}
+        </div>
+        <div class="title">
+            <p class="is-size-4" style="margin-bottom: 20px;">勤務地</p>
+            {{ form.location | add_class:"input is-primary"}}
+        </div>
+        <div class="title">
+            <p class="is-size-4" style="margin-bottom: 20px;">希望単価</p>
+            {{ form.price | add_class:"input is-primary"}}
+        </div>
+        <div class="title">
+            <p class="is-size-4" style="margin-bottom: 20px;">備考</p>
+            {{ form.body | add_class:"textarea is-primary"}}
+        </div>
+        <div class="title" style="padding: 0px 400px;">
+            <p class="is-size-4" style="margin-bottom: 20px;">派遣会社</p>
+            {{ form.agent | add_class:"is-size-4 has-text-left"}}
+        </div>
+        <div hidden>
+            <input type="text" name="create_user" maxlength="50" class="input is-primary" required="" id="id_create_user" value={{request.user.id}}>
+        </div>
+            <button class="button is-danger is-rounded is-large is-hovered" style="margin: 50px;">保存</button>
+    </form>
+</div>
+
+<!-- <script src="{% static 'js/post_create.js' %}"></script> -->
+
+{% endblock %}
