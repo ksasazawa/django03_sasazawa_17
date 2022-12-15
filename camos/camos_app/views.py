@@ -9,12 +9,22 @@ from django.contrib.auth.decorators import login_required
 def home(request):
     return render(request, "home.html")
 
-@login_required(login_url='login/') 
+@login_required(login_url='clientlogin/') 
 def frontpage(request):
     posts = Post.objects.all()
     return render(request, "frontpage.html", {"posts": posts})
 
-@login_required(login_url='login/')
+@login_required(login_url='providerlogin/') 
+def provider_frontpage(request):
+    posts = Post.objects.all()
+    return render(request, "provider_frontpage.html", {"posts": posts})
+
+@login_required(login_url='provider_map/') 
+def provider_map(request):
+    posts = Post.objects.all()
+    return render(request, "provider_map.html", {"posts": posts})
+
+@login_required(login_url='clientlogin/')
 def post_create(request):
     next_cnt = "post" + str(Post.objects.count() + 1)
     print("post_create:" + request.method)
@@ -40,15 +50,19 @@ def post_create(request):
         
     return render(request, "post_create.html", {"next_cnt": next_cnt, "form": form})
 
-@login_required(login_url='login/')
+@login_required(login_url='clientlogin/')
 def post_detail(request, slug):
     post = Post.objects.get(slug=slug)
     return render(request, "post_detail.html", {"post": post})
 
 class ClientLoginView(LoginView):
     fields = "__all__"
-    template_name = "login.html"
-    # def post(self, request):
-    #     return render(request,"login.html")
+    template_name = "clientlogin.html"
     def get_success_url(self):
         return reverse_lazy("frontpage")
+    
+class ProviderLoginView(LoginView):
+    fields = "__all__"
+    template_name = "providerlogin.html"
+    def get_success_url(self):
+        return reverse_lazy("provider_frontpage")

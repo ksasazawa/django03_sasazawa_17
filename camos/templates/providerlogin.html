@@ -1,19 +1,16 @@
 
-{% extends "base.html" %}
+{% extends "provider_base.html" %}
 {% block content %}
 
 <h1 class="title">ログイン</h1>
 <br>
 <form action="" method="POST">
     {% csrf_token %} {{form.as_p}}
-    <input id="account" type="hidden" value="">
     <input type="submit" value="ログイン" />
 </form>
 
 <script>
-    const param = location.search;
-    console.log(param);
-    document.querySelector("#account").value = param;
+    document.querySelector("#back").href = "/"
 </script>
 
 {% endblock %}

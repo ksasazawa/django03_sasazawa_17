@@ -10,15 +10,15 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 </head>
 <body>
-    <nav class="navbar is-warning" style="display: flex; justify-content:space-between; align-items: center;">
+    <nav class="navbar is-primary" style="display: flex; justify-content:space-between; align-items: center;">
             <div class="navbar-brand">
-            <a id="back" href="{% url 'frontpage' %}" class="navbar-item">
+            <a href="{% url 'provider_frontpage' %}" class="navbar-item">
                 <strong>管理画面</strong>
             </a>
             </div>
-            <div style="margin-right: 10px; padding: 5px 30px; background-color: yellow; border-radius: 10px;">
+            <div style="margin-right: 10px; padding: 5px 30px; background-color: #99FFFF; border-radius: 10px;">
                 {% if request.user.is_authenticated %}
-                <div>{{request.user}} / <a href="{% url 'logout' %}">ログアウト</a></div>
+                <div style="color: white;">{{request.user}} / <a href="{% url 'logout' %}">ログアウト</a></div>
                 {% else %}
                 <a href="{% url 'clientlogin' %}">ログイン</a>
                 {% endif %}
