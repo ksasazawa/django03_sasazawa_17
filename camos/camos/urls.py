@@ -3,7 +3,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from camos_app.views import home, frontpage, provider_frontpage, provider_map, post_detail, post_create, ClientLoginView, ProviderLoginView
+from camos_app.views import home, frontpage, provider_frontpage, provider_map, post_detail, post_create, ClientLoginView, ProviderLoginView, PostUpdate
 
 from django.contrib.auth.views import LogoutView
 

@@ -5,6 +5,7 @@ from .forms import PostForm
 
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.decorators import login_required
+from django.views.generic.edit import UpdateView
 
 def home(request):
     return render(request, "home.html")
@@ -66,3 +67,8 @@ class ProviderLoginView(LoginView):
     template_name = "providerlogin.html"
     def get_success_url(self):
         return reverse_lazy("provider_frontpage")
+    
+class PostUpdate(UpdateView):
+    model = Post
+    fields = "__all__"
+    success_url = reverse_lazy("frontpage")
